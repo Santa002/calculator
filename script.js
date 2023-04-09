@@ -1,30 +1,29 @@
 let num1, num2 = '0';
 let operator = '';
-const calculate = document.getElementById('equal');
-calculate.addEventListener('click', function(){
-  if(operator == ''){
-    return;
-  }else
-    evaluate(num1, operator, num1);
-})
 
-function setValues(e){
-  value = e.target.value;
-  if(value == '+' || value == '-' || value == 'x' || value == '/'){
-    operator = value;
-  }else if(operator == ''){
-    if(num2 == '0'){
-      num2 = value
-    }else{
-      num2 += value;
-    }
-  }else{
-    if(num1 == '0'){
-      num1 = value
-    }else{
-      num1 += value;
-    }
-  }
+const numberBtns = document.querySelectorAll('[data-number]');
+const operatorBtns = document.querySelectorAll('[data-operation]');
+const equalBtn = document.getElementById('equal');
+const decimalBtn = document.getElementById('decimal');
+const deleteBtn = document.getElementById('delete');
+const clearBtn = document.getElementById('clear');
+
+window.addEventListener('keydown', keyInput);
+equalBtn.addEventListener('click', evaluate);
+decimalBtn.addEventListener('click', decimal);
+deleteBtn.addEventListener('click', deleteNum);
+clearBtn.addEventListener('click', clear);
+
+numberBtns.forEach((btn) => 
+  btn.addEventListener('click',  () => addNumber(btn.textContent))
+)
+
+operatorBtns.forEach((btn) => 
+  btn.addEventListener('click', () => setOperator(btn.textContent))
+)
+
+function keyInput(e){
+  
 }
 
 function evaluate(num1, operator, num2){
