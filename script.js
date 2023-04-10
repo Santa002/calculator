@@ -77,9 +77,8 @@ function keyInput(e){
 function evaluate(){
   if(operator == null) return;
   num2 = current.textContent;
-  current = operation(num1, operator, num2);
+  current.textContent = operation(num1, operator, num2);
   prev.textContent = `${num1} ${operator} ${num2}`;
-  current.textContent = '0';
 }
 
 function operation(num1, operator, num2){
@@ -90,7 +89,7 @@ function operation(num1, operator, num2){
       return num1 + num2;
     case '-':
       return num1 - num2;
-    case 'x':
+    case '*':
       return num1*num2;
     case '/':
       if(num2 == 0){
@@ -103,7 +102,7 @@ function operation(num1, operator, num2){
 
 
 
-console.log(evaluate('5', '+', 3))
-console.log(evaluate(5, '-', 3))
-console.log(evaluate(5, 'x', 3))
-console.log(evaluate(5, '/', 3))
+console.log(operation('5', '+', 3))
+console.log(operation(5, '-', 3))
+console.log(operation(5, '*', 3))
+console.log(operation(5, '/', 3))
